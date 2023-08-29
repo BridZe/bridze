@@ -1,3 +1,6 @@
+# 이 코드는 Flask 웹 애플리케이션으로, frontend의 Flutter 코드와 상호작용하여 음성을 텍스트로 변환(STT), CRR 점수 계산, 비디오 프레임화, 이미지 감정 분석을 수행합니다.
+
+
 from flask import Flask, request, send_file, jsonify
 from werkzeug.utils import secure_filename
 from stt import model_stt, crr, Jijeong
@@ -83,7 +86,7 @@ def upload_image(index):
         return f'post image{index} plz'
 
 
-# 감정 인식 모델 실행(감정 표현 따라하기에서의 감정))
+# 감정 인식 모델 실행(감정 표현 따라하기)
 @application.route('/execute', methods=['GET'])
 def execute_file():
     emotion = str(request.args['emotion'])
@@ -113,7 +116,7 @@ def execute_v2f():
         return 'get execute file2 plz'
 
 
-# 감정 인식 모델 실행2(비디오 프레임에서의 감정)
+# 감정 인식 모델 실행2(비디오 프레임)
 @application.route('/execute2', methods=['GET'])
 def execute_file2():
     if request.method == 'GET':
@@ -154,7 +157,7 @@ def download_video(index):
         return f'get download video{index} plz'
 
 
-# 감정 이미지 다운로드(감정 표현 따라하기에서의 감정)
+# 감정 이미지 다운로드(감정 표현 따라하기)
 @application.route("/download/image", methods=['GET'])
 def download_image():
     emotion = str(request.args['emotion'])
@@ -169,7 +172,7 @@ def download_image():
         return f'get download image plz'
 
 
-# 감정 이미지 다운로드(비디오 프레임에서의 감정)
+# 감정 이미지 다운로드(비디오 프레임)
 @application.route("/download/chart/image", methods=['GET'])
 def download_chart_image():
     if request.method == 'GET':
