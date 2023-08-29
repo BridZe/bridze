@@ -1,3 +1,8 @@
+# 이 코드는 얼굴 감정 분석을 위한 VGGNet 모델을 사용하는 프로그램입니다.
+# 이미지에서 얼굴을 감지하고 크롭한 후 모델을 활용하여 감정을 예측합니다.
+# 감정별 색상 및 텍스트로 표시한 후, 여러 이미지 중에서 가장 빈도가 높은 감정을 추출하여 해당 감정의 이미지를 별도 폴더에 저장합니다.
+
+
 import numpy as np
 import cv2
 import mediapipe as mp
@@ -14,12 +19,13 @@ from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.optimizers import Adam
 
 
+# 이미지 크롭 사이즈
 CROP_SIZE = (48,48)
 
 # GPU 사용하지 않도록 환경 변수 설정
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-
+# 감정 카테고리 및 색상 설정
 emotions = {
     '0': ['angry', (0,0,255), (255,255,255)],
     '1': ['fear', (0,255,0), (255,255,255)],   # 초록색, 흰색 텍스트
@@ -79,13 +85,18 @@ class VGGNet(Sequential):
         self.checkpoint_path = checkpoint_path
 
 
+# VGGNet 모델 초기화 및 가중치 로드
 model = VGGNet(input_shape = input_shape,num_classes = num_classes, checkpoint_path = weights)
 model.load_weights(model.checkpoint_path)
 
 
+# Mediapipe 모듈 초기화
 mp_face_detection = mp.solutions.face_detection
 mp_drawing = mp.solutions.drawing_utils
 face_detection = mp_face_detection.FaceDetection(min_detection_confidence=0.5)
+
+
+# 이미지 전처리
 
 def detection_preprocessing(image, h_max=360):
     h, w, _ = image.shape
@@ -95,9 +106,11 @@ def detection_preprocessing(image, h_max=360):
         image = cv2.resize(image, (w_,h_max))
     return image
 
+
 def resize_face(face):
     x = tf.expand_dims(tf.convert_to_tensor(face), axis=2)
     return tf.image.resize(x, CROP_SIZE)
+
 
 def recognition_preprocessing(faces):
     x = tf.convert_to_tensor([resize_face(f) for f in faces])
@@ -163,11 +176,16 @@ def infer_multi_images(files):
         lst.append((path,emotion))
     return lst
 
+
+# 특정 폴더의 모든 jpg 파일 삭제 함수
 def delete_all_jpg_files(folder_path):
     jpg_files = glob.glob(os.path.join(folder_path, '*.jpg'))
     for file_path in jpg_files:
         os.remove(file_path)
 
+
+# temp 이미지들의 감정 인식을 위한 함수
+# 가장 빈도수 높은 감정 및 이미지 추출
 def find_max_emotion(stage_name, arr):
     source_folder_name = "/workspace/wpqkf/facial_emotion_recognition/temp/"
     des_folder_name = "/workspace/wpqkf/facial_emotion_recognition/inference/"
@@ -193,7 +211,7 @@ def find_max_emotion(stage_name, arr):
         os.makedirs(stage_folder_path)
 
     destination_path = os.path.join(stage_folder_path, destination_filename)
-    
+
     if os.path.exists(destination_path):
         print(f"Warning: Destination file '{destination_path}' already exists. Overwriting the copy.")
         shutil.copy2(max_path, destination_path)
@@ -202,18 +220,14 @@ def find_max_emotion(stage_name, arr):
 
 
 
-    #temp폴더의 모든 사진 삭제
+    # temp폴더의 모든 사진 삭제
     delete_all_jpg_files(source_folder_name)
 
     return most_common_emotion
 
-#paths = np.sort(np.array(glob.glob('temp/*.jpg')))
-#infers = infer_multi_images(paths)
-#단계명은 단계 마다 다른이름,inference 폴더 안에 단계 이름의 폴더를 
-#만들어야함
-#final_emotion = find_max_emotion('',infers)
-#print(final_emotion)
 
+# videos의 frame의 감정 인식을 위한 함수
+# 가장 빈도수 높은 감정 및 이미지 추출
 def find_max_emotion2(stage_name, arr):
     source_folder_name2 = "/workspace/wpqkf/videos/frames/"
     des_folder_name2 = "/workspace/wpqkf/videos"
@@ -247,8 +261,15 @@ def find_max_emotion2(stage_name, arr):
         shutil.move(max_path, destination_path)
 
 
-
-    #temp폴더의 모든 사진 삭제
+    # frames 폴더의 모든 사진 삭제
     delete_all_jpg_files(source_folder_name2)
 
     return most_common_emotion
+
+
+# 사용 예시
+# paths = np.sort(np.array(glob.glob('temp/*.jpg')))
+# infers = infer_multi_images(paths)
+# 단계명은 단계 마다 다른이름,inference 폴더 안에 단계 이름의 폴더를 만들어야함
+# final_emotion = find_max_emotion('',infers)
+# print(final_emotion)
