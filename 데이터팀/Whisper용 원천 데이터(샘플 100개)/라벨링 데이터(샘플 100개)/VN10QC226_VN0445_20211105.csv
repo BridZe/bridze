@@ -1,0 +1,2 @@
+fileName,speakerID,sentenceID,recordUnit,recordQuality,recordDate,recordTime,Reading,ReadingLabelText,Question,AnswerLabelText,SentenceSpeechLV,SpeakerID,gender,birthYear,eduBackground,country,residencePeriod,residenceCity,languageClass,motherTongue,selfAssessment,topikGrade,LearningPeriod,learningSource
+VN10QC226_VN0445_20211105.wav,VN0445,VN10QC226,ios,16bit 16kHz MONO,2021-11-05 15:21:57,11.37,,,당신은 어느 나라에서 왔나요? 한국에 온 이유는 무엇인가요?,저는 베트남에서 왔습니다 저는 장학금을 받아서 한국 대학교에 가러 한국을 왔습니다 지금은 대학에 한국어를 공부하고 있습니다,하,VN0445,F,2001,고졸,VN,1년 미만,KR-26,베트남어,베트남어,중,4,7,학교 수업 (대학 포함)

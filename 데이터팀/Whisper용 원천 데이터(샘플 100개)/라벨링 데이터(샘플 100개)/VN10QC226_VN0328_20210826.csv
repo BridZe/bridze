@@ -1,0 +1,2 @@
+fileName,speakerID,sentenceID,recordUnit,recordQuality,recordDate,recordTime,Reading,ReadingLabelText,Question,AnswerLabelText,SentenceSpeechLV,SpeakerID,gender,birthYear,eduBackground,country,residencePeriod,residenceCity,languageClass,motherTongue,selfAssessment,topikGrade,LearningPeriod,learningSource
+VN10QC226_VN0328_20210826.wav,VN0328,VN10QC226,ios,16bit 16kHz MONO,2021-08-26 19:13:48,10.502,,,당신은 어느 나라에서 왔나요? 한국에 온 이유는 무엇인가요?,저는 베트남에서 왔습니다 결혼하고 돈을 벌어서 행복하게 살려고 한국에 왔습니다,상,VN0328,F,1988,대졸,KR,5년 이상,KR-41,베트남어,베트남어,상,해당 없음,24,인터넷 강의

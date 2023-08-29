@@ -1,0 +1,2 @@
+fileName,speakerID,sentenceID,recordUnit,recordQuality,recordDate,recordTime,Reading,ReadingLabelText,Question,AnswerLabelText,SentenceSpeechLV,SpeakerID,gender,birthYear,eduBackground,country,residencePeriod,residenceCity,languageClass,motherTongue,selfAssessment,topikGrade,LearningPeriod,learningSource
+VN10QC226_VN0119_20210805.wav,VN0119,VN10QC226,android,16bit 16kHz MONO,2021-08-05 01:47:50,10.294,,,당신은 어느 나라에서 왔나요? 한국에 온 이유는 무엇인가요?,저는 베트남 나라에서 왔습니다 결혼으로 한국에 왔습니다,중,VN0119,F,1993,고졸,KR,5년 이상,KR-41,베트남어,베트남어,상,6,38,학원

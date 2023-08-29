@@ -1,0 +1,2 @@
+fileName,speakerID,sentenceID,recordUnit,recordQuality,recordDate,recordTime,Reading,ReadingLabelText,Question,AnswerLabelText,SentenceSpeechLV,SpeakerID,gender,birthYear,eduBackground,country,residencePeriod,residenceCity,languageClass,motherTongue,selfAssessment,topikGrade,LearningPeriod,learningSource
+VN10QC227_VN0064_20210730.wav,VN0064,VN10QC227,android,16bit 16kHz MONO,2021-07-30 12:42:27,5.745,,,한국에 온 지 얼마나 되셨나요? 앞으로 얼마나 오래 계실 예정인가요?,한국 온 지 사 년 됐습니다 계 한국에 계속 있습니다,중,VN0064,F,1994,석사이상,VN,3년 이상 5년 미만,KR-11,베트남어,베트남어,상,5,12,학원

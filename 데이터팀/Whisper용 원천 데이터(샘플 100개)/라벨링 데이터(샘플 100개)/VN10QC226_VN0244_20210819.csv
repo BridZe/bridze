@@ -1,0 +1,2 @@
+fileName,speakerID,sentenceID,recordUnit,recordQuality,recordDate,recordTime,Reading,ReadingLabelText,Question,AnswerLabelText,SentenceSpeechLV,SpeakerID,gender,birthYear,eduBackground,country,residencePeriod,residenceCity,languageClass,motherTongue,selfAssessment,topikGrade,LearningPeriod,learningSource
+VN10QC226_VN0244_20210819.wav,VN0244,VN10QC226,ios,16bit 16kHz MONO,2021-08-19 10:02:25,7.287,,,당신은 어느 나라에서 왔나요? 한국에 온 이유는 무엇인가요?,당신은 어느 나라에서 왔나요 한국에 온 이유는 무엇인가요,중,VN0244,F,1974,중졸,KR,5년 이상,KR-11,베트남어,베트남어,중,3,24,기타

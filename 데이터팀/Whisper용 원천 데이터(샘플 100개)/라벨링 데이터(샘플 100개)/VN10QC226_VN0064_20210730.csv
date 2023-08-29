@@ -1,0 +1,2 @@
+fileName,speakerID,sentenceID,recordUnit,recordQuality,recordDate,recordTime,Reading,ReadingLabelText,Question,AnswerLabelText,SentenceSpeechLV,SpeakerID,gender,birthYear,eduBackground,country,residencePeriod,residenceCity,languageClass,motherTongue,selfAssessment,topikGrade,LearningPeriod,learningSource
+VN10QC226_VN0064_20210730.wav,VN0064,VN10QC226,android,16bit 16kHz MONO,2021-07-30 12:41:05,6.462,,,당신은 어느 나라에서 왔나요? 한국에 온 이유는 무엇인가요?,저는 베트남에서 왔습니다 한국에 유학하려고 해서 왔습니다,중,VN0064,F,1994,석사이상,VN,3년 이상 5년 미만,KR-11,베트남어,베트남어,상,5,12,학원
