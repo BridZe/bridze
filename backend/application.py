@@ -7,8 +7,6 @@ from facial_emotion_recognition import model_cv as cv
 import numpy as np
 import glob
 from videos import video2frame as v2f
-import cv2
-import time
 
 
 # Flask 애플리케이션 초기화
@@ -26,7 +24,7 @@ def hello():
     return 'Good Connection'
 
 
-# 오디오 업로드와 음성 인식 처리
+# 플루터에서 녹음한 오디오, 서버로 업로드 및 STT모델 사용
 @application.route("/audio", methods=['POST', 'GET'])
 def upload_audio():
     global stt_result
@@ -43,7 +41,7 @@ def upload_audio():
         return 'result: ' + stt_result
 
 
-# CRR 점수 계산
+# 각 단계별 CRR 점수 계산
 @application.route('/crr/<int:index>', methods=['GET'])
 def crr_score(index):
     global crr_scores
@@ -73,7 +71,7 @@ def average_score():
         return score
 
 
-# 이미지 업로드
+# 플루터에서 촬영한 이미지, 서버로 업로드 (감정표현 따라하기)
 @application.route("/image/<int:index>", methods=['POST', 'GET'])
 def upload_image(index):
     if request.method == 'POST':
@@ -85,7 +83,7 @@ def upload_image(index):
         return f'post image{index} plz'
 
 
-# 감정 인식 모델 실행 라우트
+# 감정 인식 모델 실행(감정 표현 따라하기에서의 감정))
 @application.route('/execute', methods=['GET'])
 def execute_file():
     emotion = str(request.args['emotion'])
@@ -105,17 +103,17 @@ def execute_file():
         return emotion
 
 
-# 비디오 프레임 추출
+# 비디오에서 프레임 추출
 @application.route('/v2f')
 def execute_v2f():
     if request.method == 'GET':
-        v2f.v2f()
+        v2f.video_to_frames()
         return 'v2f lets go'
     else:
         return 'get execute file2 plz'
 
 
-# 감정 인식 모델 실행2
+# 감정 인식 모델 실행2(비디오 프레임에서의 감정)
 @application.route('/execute2', methods=['GET'])
 def execute_file2():
     if request.method == 'GET':
@@ -131,7 +129,7 @@ def execute_file2():
         return 'get execute file2 plz'
 
 
-# 비디오 업로드
+# 플루터에서 녹화한 영상, 서버로 업로드
 @application.route("/video/<int:index>", methods=['POST', 'GET'])
 def upload_video(index):
     if request.method == 'POST':
@@ -143,7 +141,7 @@ def upload_video(index):
         return f'post video{index} plz'
 
 
-# 비디오 다운로드
+# 서버에 있는 영상, 플루터로 다운로드
 @application.route("/download/video/<int:index>", methods=['GET'])
 def download_video(index):
     if request.method == 'GET':
@@ -155,8 +153,8 @@ def download_video(index):
     else:
         return f'get download video{index} plz'
 
-    
-# 이미지 다운로드
+
+# 감정 이미지 다운로드(감정 표현 따라하기에서의 감정)
 @application.route("/download/image", methods=['GET'])
 def download_image():
     emotion = str(request.args['emotion'])
@@ -171,7 +169,7 @@ def download_image():
         return f'get download image plz'
 
 
-# 차트 이미지 다운로드
+# 감정 이미지 다운로드(비디오 프레임에서의 감정)
 @application.route("/download/chart/image", methods=['GET'])
 def download_chart_image():
     if request.method == 'GET':

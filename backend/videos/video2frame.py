@@ -1,21 +1,27 @@
+# 이 코드는 OpenCV를 사용하여 동영상 파일을 읽고 지정된 간격으로 프레임을 추출하여 이미지로 저장하는 역할을 합니다.
+# 주어진 경로에 있는 동영상 파일을 사용하며, 추출된 프레임은 frames 폴더에 저장됩니다.
+
 import cv2
 import time
 import os
 
 
-def v2f():
+def video_to_frames():
     # 동영상 파일 경로들
     video_paths = ['/workspace/wpqkf/videos/video1.mp4', '/workspace/wpqkf/videos/video2.mp4', '/workspace/wpqkf/videos/video3.mp4']
 
-    # 프레임 처리 간격 설정 (초당 몇 프레임)
+    # 프레임 처리 간격 설정
     frame_interval = 0.15
+    
+    # 동영상 번호 초기화
     video_num = 0
+    
+    
     for video_path in video_paths:
         # 동영상 열기
         cap = cv2.VideoCapture(video_path)
         video_num += 1
-        # 폴더 생성
-        video_name = os.path.splitext(os.path.basename(video_path))[0]
+        # 프레임을 저장할 폴더 생성
         output_folder = '/workspace/wpqkf/videos/frames'
         os.makedirs(output_folder, exist_ok=True)
 
@@ -44,4 +50,5 @@ def v2f():
 
     cv2.destroyAllWindows()
 
-#v2f()
+    
+# video_to_frames()
